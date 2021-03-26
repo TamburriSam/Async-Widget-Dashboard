@@ -1,22 +1,21 @@
-let lsItems = JSON.parse(localStorage.getItem("projects"));
+ import {projects} from './index.js'
 
-const persistToLs = () => {
-  localStorage.setItem("projects", JSON.stringify(projects));
-};
 
-const convertItems = () => {
-  if (lsItems) {
-    projects = lsItems;
-  }
-};
+
+export let lsItems = JSON.parse(localStorage.getItem("projects"));
 
 const ifPageLoaded = () => {
-  const main = document.querySelector('.main');
-  if (localStorage.getItem("projects") !== null) {
-//projects for each attach to main 
-    projects.forEach((element => console.log(element)))
-  }
+    const h2 = document.querySelector('.main');
+    if (localStorage.getItem("projects") !== null) {
+  //projects for each attach to main 
+      projects.forEach((element) => {
+          const div = document.createElement('div');
+          div.innerHTML = element;
+          h2.appendChild(div)
+          console.log(element)
+      })
+    }
+  
+  };
 
-};
-
-export { persistToLs, convertItems, ifPageLoaded };
+  export {ifPageLoaded} 

@@ -1,0 +1,74 @@
+/* CSS Reset */
+@import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+
+:root {
+    /* Color Palette */
+    --light-purple: #BDA4EE;
+    --dark-purple: #554A6B;
+    --light-grey : #E9E8EB;
+    --medium-grey: #B6B6B8;
+    --dark-grey: #6A6A6B;
+    /* Padding */
+    --padding-sm: 20px;
+    --padding-md: 40px;
+    --padding-lg: 60px;
+    /* Border Radius */
+
+    /* Font Sizes */
+}
+
+
+/* Main Components */
+#container {
+    width:100vw;
+    height:100vh;
+    background-color: var(--light-purple); /* change eventually */
+    display:grid;
+    grid-template-columns: 200px 20px 350px 20px auto 20px;
+    grid-template-rows: auto repeat(11, 65px) auto ;
+}
+
+#sidebar {
+    grid-column: 1 ;
+    grid-row: 1 / span 13;
+    background-color: #fff;
+}
+
+#namebox {
+    grid-column: 3 ;
+    grid-row: 2;
+    background-color: #fff;
+}
+
+#weatherbox {
+    background-color: white;
+    grid-column: 3 ;
+    grid-row: 4 / span 4;
+}
+
+#duebox {
+    background-color: #fff;
+    grid-column: 3;
+    grid-row: 9 / span 4 ;
+}
+
+#todolist {
+    background-color: #fff;
+    grid-column: 5 ;
+    grid-row: 2 / span 11;
+}
+
+/* Sidebar Components */
+
+.main {
+
+}
+
+#projectsubmit {
+
+}
+
+.bookInput {
+    background-color: #3ff;
+}
+

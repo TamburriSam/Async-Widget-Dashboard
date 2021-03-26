@@ -10,6 +10,7 @@ const ifPageLoaded = () => {
   //projects for each attach to main 
       projects.forEach((element) => {
           const div = document.createElement('div');
+          div.setAttribute('class', 'projecttitles');
           div.innerHTML = element;
           h2.appendChild(div)
           console.log(element)

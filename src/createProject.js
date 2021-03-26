@@ -1,6 +1,8 @@
 class Project{
-    constructor(name){
+    constructor(name, id, list = []){
         this.name = name;
+        this.id = id;
+        this.list = list;
     }
 
     sayName(){

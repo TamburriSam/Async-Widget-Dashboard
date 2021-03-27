@@ -1,4 +1,3 @@
-import { Project } from "./createProject.js";
 import { projectAdd as projectDom1 } from "./DOMProjectsSidebar.js";
 import { ifPageLoaded, lsItems } from "./localStorageItems";
 

@@ -9,6 +9,7 @@ const ifPageLoaded = () => {
     if (localStorage.getItem("projects") !== null) {
   //projects for each attach to main 
       projects.forEach((element) => {
+          /* probably put this in a domcontroller */
           const div = document.createElement('div');
           div.setAttribute('class', 'projecttitles');
           div.innerHTML = element;

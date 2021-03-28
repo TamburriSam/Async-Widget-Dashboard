@@ -1,4 +1,4 @@
-class Project{
+ class Project{
     constructor(name, id, list = []){
         this.name = name;
         this.id = id;
@@ -10,4 +10,4 @@ class Project{
     }
 }
 
-export {Project}
+export {Project} 

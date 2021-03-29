@@ -53,6 +53,10 @@ const projectAdd = () => {
       projectName.innerHTML = this.innerHTML;
       this.className += " active"; 
 
+      /////refresh page after 
+      //// refresh page after folder addition 
+      /// find out how to edit and populate upon new folder creation. right now app only works as intended on reload not when folder is created. cant edit folder properly upon first creation.  
+
       console.log('here') 
 
     

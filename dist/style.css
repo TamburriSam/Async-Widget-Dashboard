@@ -92,11 +92,16 @@ main:active {
 .projecttitles:hover {
     cursor:pointer;
     background-color: var(--light-grey);
-    
 }
 
 
+.active {
+    background-color: var(--light-grey);
+}
 
+.active {
+
+}
 
 
 
@@ -106,10 +111,41 @@ main:active {
 
 #todotitle {
     grid-row:1;
+    display:flex;
+}
+
+#project-name {
+    grid-row:1;
+}
+
+.info-container {
+    display:flex;
+}
+
+#priority {
+    
 }
 
 #todoadd {
     grid-row:2;
     width:50px;
-    height:20px;
+    height:60px;
+}
+
+.task-input {
+    grid-row: 2;
+    width:30%;
+    height:50%;
+}
+
+.date {
+    width:30%;
+    grid-row:2;
+    height:50%;
+}
+
+#priority {
+    width: 30%;
+    height: 50%;
+    grid-row: 2;
 }

@@ -5,7 +5,7 @@ export const addList = document.querySelector('#todoadd');
 
 function newTask(){
     const input = document.createElement('div');
-    const todoList = document.querySelector('#todolist');
+    const todoList = document.querySelector('.ls-todos');
     const taskField = document.querySelector('.task-input').value;
     const dateField = document.querySelector('#start').value;
     const priorityField = document.querySelector('#priority').value
@@ -20,7 +20,7 @@ function newTask(){
     projects.forEach((item) => {
         if(item.name.includes(projectName.textContent)){
             item.list.push(taskField);
-            item.date.push(dateField)
+            item.date.push(dateField);
             localStorage.setItem('projects', JSON.stringify(projects));
             console.log(projects)
         }

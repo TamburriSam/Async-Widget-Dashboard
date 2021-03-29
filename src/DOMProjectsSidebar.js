@@ -2,7 +2,7 @@ import {projects, titles, projectName} from './index.js'
 import { Project } from "./createProject.js";
 
 
-const todoList = document.querySelector('#todolist');
+const todoList = document.querySelector('.ls-todos');
 
 const projectAdd = () => {
     const input = document.createElement('input');
@@ -82,18 +82,22 @@ const activeProject = () => {
           this.className += " active";
 
           //populate todosection w list array
-
+          //// we are right here working through this
+          ///this is the most important logic
 
           for(let i = 0; i < projects.length; i++){
+              if(projects[i].name.includes(this.textContent)){
               projects[i].list.forEach((element) => {
                   console.log(element);
                   const div = document.createElement('div');
-
+                 
                   div.innerHTML = element;
-                  todoList.appendChild(div)
+                  todoList.prepend(div)
               })
           }
+        };
 
+        console.log(this.textContent)
 
         });
       });

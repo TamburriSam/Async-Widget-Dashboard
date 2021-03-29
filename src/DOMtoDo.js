@@ -19,7 +19,8 @@ function newTask(){
     //match
     projects.forEach((item) => {
         if(item.name.includes(projectName.textContent)){
-            item.list.push(taskField)
+            item.list.push(taskField);
+            item.date.push(dateField)
             localStorage.setItem('projects', JSON.stringify(projects));
             console.log(projects)
         }

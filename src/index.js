@@ -29,3 +29,5 @@ export const projectName = document.querySelector("#project-name");
 activeProject();
 
 //when clicked grab innerhtml of folder and match it to array
+
+console.log(projects)

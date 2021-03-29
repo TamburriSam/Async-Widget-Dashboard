@@ -17,6 +17,7 @@ function newTask(){
     input.textContent = taskField + dateField + priorityField;
 
     //match
+    //maybe tie this logic into activeProject function in DOMProjectsSidebar module
     projects.forEach((item) => {
         if(item.name.includes(projectName.textContent)){
             item.list.push(taskField);

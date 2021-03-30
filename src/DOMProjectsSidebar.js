@@ -32,11 +32,6 @@ const projectAdd = () => {
 
     localStorage.setItem("projects", JSON.stringify(projects));
 
-    console.log(newProj.id);
-    console.log(newProj);
-
-    console.log(projects);
-    console.log(newProj.name);
 
     input.style.display = "none";
     submit.style.display = "none";
@@ -63,14 +58,23 @@ const projectAdd = () => {
           todoList.innerHTML = "";
 
           projects[i].list.forEach((element) => {
-            console.log(element);
+
+            
+ 
 
             //clear whatever is in this pane
             const div = document.createElement("div");
 
-            div.innerHTML = element;
+            div.innerHTML = `${element.task} <span class ="dueDate">Due: ${element.date}</span>   
+            <div id="icons">
+            <button class = "ex"><i class="fas fa-trash"></i></button> 
+             <button class ="edit"><i class="fas fa-edit"></i></button>
+             </div>`;
+             div.setAttribute('class', 'list-styling');
+
             todoList.prepend(div);
-          });
+        });
+
 
           console.log(todoList.innerHTML);
         }
@@ -102,14 +106,13 @@ const activeProject = () => {
           todoList.innerHTML = "";
 
           projects[i].list.forEach((element) => {
-            console.log(element);
 
             //clear whatever is in this pane
             const div = document.createElement("div");
 
             div.setAttribute('class', 'list-styling')
 
-            div.innerHTML = element + `
+            div.innerHTML = `${element.task} <span class ="dueDate">Due: ${element.date}</span>   
             <div id="icons">
             <button class = "ex"><i class="fas fa-trash"></i></button> 
              <button class ="edit"><i class="fas fa-edit"></i></button>
@@ -119,6 +122,10 @@ const activeProject = () => {
             //make delete and edit buttons 
 
           });
+
+          projects[i].date.forEach((dateItem) => {
+            console.log(dateItem)
+          })
 
           console.log(todoList.innerHTML);
         }

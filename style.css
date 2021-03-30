@@ -20,6 +20,7 @@
     /* Border Radius */
 
     /* Font Sizes */
+    --xs-font: 12px;
     --sm-font: 18px;
     --md-font: 24px;
     --lg-font: 32px;
@@ -207,4 +208,8 @@ main:active {
 .edit {
     border:none;
     background-color: #fff;
+}
+
+.dueDate {
+    font-size: var(--xs-font);
 }

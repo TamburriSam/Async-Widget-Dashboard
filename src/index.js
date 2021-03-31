@@ -1,4 +1,4 @@
-import { projectAdd as projectDom1, activeProject } from "./DOMProjectsSidebar.js";
+import { projectAdd as projectDom1, activeProject, makeActive } from "./DOMProjectsSidebar.js";
 import { ifPageLoaded, lsItems } from "./localStorageItems";
 import { newTask, addList } from "./DOMtoDo.js";
 
@@ -13,6 +13,12 @@ if (lsItems) {
 }
 
 document.addEventListener("DOMContentLoaded", ifPageLoaded());
+
+
+
+
+
+
 
 projectAdd.addEventListener("click", function () {
   projectDom1();
@@ -31,3 +37,6 @@ activeProject();
 //when clicked grab innerhtml of folder and match it to array
 
 console.log(projects)
+
+
+

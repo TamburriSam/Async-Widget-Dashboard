@@ -35,8 +35,9 @@ const findTask = (tasked) => {
         //////working on delete logic
         //////
         //////
-        //////
-        ////
+        //////b
+        ////maybe tie an id to either each TASK or 
+        //// use a data- value on projectitles 
 
         let x = document.querySelector('.fas')
         let taskName = document.querySelector('.taskName');
@@ -45,11 +46,47 @@ const findTask = (tasked) => {
 
 
           for(i=0 ; i < projects.length ; i++){
-            
 
             let targ = this.parentElement.parentElement.parentElement.firstChild.textContent;
 
-            console.log(projects[i].list.includes(targ));
+            var removedIndex = projects[i].list.map(function (x) { return x.task; }).indexOf(targ);
+
+            console.log(removedIndex)
+
+
+          
+            projects[i].list.splice(removedIndex, 1);
+        
+            localStorage.setItem('projects', JSON.stringify(projects));
+
+          
+
+            console.log(projects[i].list)
+
+            
+
+            /* projects[i].list.forEach((element) => {
+              
+
+
+            
+
+
+              if(element.task.includes(targ)){
+                
+                element.task.spice(removedIndex, 1)
+              
+                localStorage.setItem('projects', JSON.stringify(projects));
+
+                console.log(projects)
+              
+
+                //projects[i].list
+              }
+
+            }) */
+
+           
 
 
          

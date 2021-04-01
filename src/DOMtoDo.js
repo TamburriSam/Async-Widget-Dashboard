@@ -3,20 +3,22 @@ import { deleteTask } from "./DOMProjectsSidebar";
 
 export const addList = document.querySelector("#todoadd");
 
-function newTask() {
-  let count = 0;
+function newTask(task, date, priority) {
+
 
   const input = document.createElement("div");
   const todoList = document.querySelector(".ls-todos");
-  const taskField = document.querySelector(".task-input").value;
-  const dateField = document.querySelector("#start").value;
-  const priorityField = document.querySelector("#priority").value;
+/*   const task = document.querySelector(".task-input").value;
+  const date = document.querySelector("#start").value;
+  const priority = document.querySelector("#priority").value; */
 
   todoList.prepend(input);
 
 
   input.setAttribute("class", "list-styling");
-  input.innerHTML = `<div class ="taskName">${taskField}</div> <span class="dueDate"> Due: ${dateField} </span>
+  input.innerHTML = `<div class ="taskName">${task}</div> <span class="dueDate"> Due: ${date} </span>
+  <span class="priorityLevel">${priority}
+  </span>
     <div id="icons">
     <button class = "ex"><i class="fas fa-trash"></i></button> 
      <button class ="edit"><i class="fas fa-edit"></i></button>
@@ -27,12 +29,12 @@ function newTask() {
     if (item.name.includes(projectName.textContent)) {
 
       let newO = {
-        task: `${taskField}`,
-        date: `${dateField}`,
-        priority: `${priorityField}`,
+        task: `${task}`,
+        date: `${date}`,
+        priority: `${priority}`,
       };
       item.list.push(newO);
-      item.date.push(dateField);
+      item.date.push(date);
       //right here
 
 

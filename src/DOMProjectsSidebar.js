@@ -27,7 +27,9 @@ const findTask = (tasked) => {
         //clear whatever is in this pane
         const div = document.createElement("div");
 
-        div.innerHTML = `<div class ="taskName">${element.task}</div> <span class ="dueDate">Due: ${element.date}</span>   
+        div.innerHTML = `<div class ="taskName">${element.task}</div> 
+        <span class ="dueDate">Due: ${element.date}</span>
+        <span class="priorityLevel">${element.priority} </span>   
         <div id="icons">
         <button class = "ex"><i class="fas fa-trash"></i></button> 
          <button class ="edit"><i class="fas fa-edit"></i></button>
@@ -44,12 +46,13 @@ const findTask = (tasked) => {
           deleteTask(this);
         });
 
+       
+        openModal();
+
 
         let edit = document.querySelector('.fa-edit').addEventListener('click', function(){
           console.log('e')
         })
-
-
 
 
 
@@ -96,9 +99,11 @@ const projectAdd = () => {
 
       /// find out how to edit and populate upon new folder creation. ri ght now app only works as intended on reload not when folder is created. cant edit folder properly upon first creation.
 
+      
+
   
 
-      console.log("here");
+      console.log("here now");
 
       todoList.innerHTML = "";
 
@@ -139,4 +144,4 @@ const deleteTask = (task) => {
   }
 };
 
-export { projectAdd, activeProject, makeActive, deleteTask };
+export { projectAdd, activeProject, makeActive, deleteTask, findTask };

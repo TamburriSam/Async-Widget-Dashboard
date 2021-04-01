@@ -6,13 +6,7 @@ constructor(name, id, list = [], date = []){
         this.date = date;
     }
 
-    sayName(){
-        return `Hi ${this.name}`;
-    }
 
-    showInfo(){
-        return ``;
-    }
 }
 
 export {Project} 

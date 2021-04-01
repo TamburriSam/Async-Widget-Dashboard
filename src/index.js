@@ -25,7 +25,7 @@ projectAdd.addEventListener("click", function () {
 });
 
 addList.addEventListener("click", function () {
-  newTask();
+  newTask(taskField.value, dateField.value, priorityField.value);
 });
 
 export const titles = document.querySelectorAll(".projecttitles");
@@ -37,6 +37,10 @@ activeProject();
 //when clicked grab innerhtml of folder and match it to array
 
 console.log(projects)
+
+const taskField = document.querySelector(".task-input")
+const dateField = document.querySelector("#start")
+const priorityField = document.querySelector("#priority")
 
 
 

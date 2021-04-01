@@ -8,15 +8,15 @@ function newTask(task, date, priority) {
 
   const input = document.createElement("div");
   const todoList = document.querySelector(".ls-todos");
-/*   const task = document.querySelector(".task-input").value;
-  const date = document.querySelector("#start").value;
-  const priority = document.querySelector("#priority").value; */
+
 
   todoList.prepend(input);
 
 
   input.setAttribute("class", "list-styling");
-  input.innerHTML = `<div class ="taskName">${task}</div> <span class="dueDate"> Due: ${date} </span>
+  //clear input?
+  input.innerHTML = '';
+  input.innerHTML = `<div class ="taskName">${task}</div> <span class="dueDate"> ${date} </span>
   <span class="priorityLevel">${priority}
   </span>
     <div id="icons">

@@ -4,6 +4,8 @@ export const addList = document.querySelector('#todoadd');
 
 
 function newTask(){
+    let count = 0
+
     const input = document.createElement('div');
     const todoList = document.querySelector('.ls-todos');
     const taskField = document.querySelector('.task-input').value;

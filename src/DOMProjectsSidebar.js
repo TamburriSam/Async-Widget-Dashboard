@@ -1,5 +1,8 @@
 import { projects, titles, projectName } from "./index.js";
 import { Project } from "./createProject.js";
+import {openModal} from './modal.js'
+
+
 
 const todoList = document.querySelector(".ls-todos");
 
@@ -19,6 +22,7 @@ const findTask = (tasked) => {
     if (projects[i].name.includes(tasked.textContent)) {
       todoList.innerHTML = "";
 
+
       projects[i].list.forEach((element) => {
         //clear whatever is in this pane
         const div = document.createElement("div");
@@ -32,71 +36,22 @@ const findTask = (tasked) => {
 
         todoList.prepend(div);
 
-        //////working on delete logic
-        //////
-        //////
-        //////b
-        ////maybe tie an id to either each TASK or 
-        //// use a data- value on projectitles 
-
-        let x = document.querySelector('.fas')
-        let taskName = document.querySelector('.taskName');
-
-        x.addEventListener('click', function(){
-
-
-          for(i=0 ; i < projects.length ; i++){
-
-            let targ = this.parentElement.parentElement.parentElement.firstChild.textContent;
-
-            var removedIndex = projects[i].list.map(function (x) { return x.task; }).indexOf(targ);
-
-            console.log(removedIndex)
-
-
-          
-            projects[i].list.splice(removedIndex, 1);
+        let x = document.querySelector(".fa-trash");
         
-            localStorage.setItem('projects', JSON.stringify(projects));
 
-          
-
-            console.log(projects[i].list)
-
-            
-
-            /* projects[i].list.forEach((element) => {
-              
+        x.addEventListener("click", function () {
+          //delete item
+          deleteTask(this);
+        });
 
 
-            
-
-
-              if(element.task.includes(targ)){
-                
-                element.task.spice(removedIndex, 1)
-              
-                localStorage.setItem('projects', JSON.stringify(projects));
-
-                console.log(projects)
-              
-
-                //projects[i].list
-              }
-
-            }) */
-
-           
-
-
-         
-          }
-
+        let edit = document.querySelector('.fa-edit').addEventListener('click', function(){
+          console.log('e')
         })
-///////
-/////
-////////
-//////////////////////////////////////////////////////////////////
+
+
+
+
 
       });
     }
@@ -105,8 +60,6 @@ const findTask = (tasked) => {
 
 //add project folder
 const projectAdd = () => {
-
-
   const input = document.createElement("input");
   const br = document.createElement("br");
   const submit = document.createElement("button");
@@ -141,8 +94,9 @@ const projectAdd = () => {
     div.addEventListener("click", function () {
       makeActive(this);
 
-
       /// find out how to edit and populate upon new folder creation. ri ght now app only works as intended on reload not when folder is created. cant edit folder properly upon first creation.
+
+  
 
       console.log("here");
 
@@ -151,17 +105,11 @@ const projectAdd = () => {
       findTask(this);
     });
   });
-
-
 };
-
 
 //active project + populate task items
 const activeProject = () => {
   titles.forEach((item) => {
-    
-
-
     item.addEventListener("click", function () {
       makeActive(this);
       findTask(this);
@@ -170,4 +118,25 @@ const activeProject = () => {
   });
 };
 
-export { projectAdd, activeProject, makeActive };
+const deleteTask = (task) => {
+  for (let i = 0; i < projects.length; i++) {
+    
+    let targ = task.parentElement.parentElement.parentElement.firstChild
+      .textContent;
+
+    var removedIndex = projects[i].list
+      .map(function (x) {
+        return x.task;
+      })
+      .indexOf(targ);
+
+    projects[i].list.splice(removedIndex, 1);
+
+    localStorage.setItem("projects", JSON.stringify(projects));
+
+    task.parentElement.parentElement.parentElement.style.display =
+      "none";
+  }
+};
+
+export { projectAdd, activeProject, makeActive, deleteTask };

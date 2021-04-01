@@ -1,4 +1,4 @@
-import {deleteTask} from './DOMProjectsSidebar.js'
+import {deleteTask2} from './DOMProjectsSidebar.js'
 import {newTask} from './DOMtoDo.js';
 
 const openModal = () => {
@@ -14,6 +14,15 @@ let span = document.getElementsByClassName('close')[0];
 
 //list styling
 trigger.onclick = function(){
+
+
+    let target = this.childNodes[0];
+
+    let complete = this;
+
+
+
+
     modal.style.display='block';
     
     let taskModal,
@@ -22,10 +31,6 @@ trigger.onclick = function(){
     notesModal;
 
     let modalContent = document.querySelector('.modal-content')
-
-    console.log(this.childNodes[0])
-    console.log(this.childNodes[2])
-    console.log(this.childNodes[4])
 
 
 taskModal = document.createElement('input');
@@ -36,6 +41,8 @@ taskModal.value = this.childNodes[0].textContent;
 dateModal = document.createElement('input')
 dateModal.value = this.childNodes[2].textContent;
 dateModal.setAttribute('class', 'date-modal');
+
+console.log(dateModal.value)
 
 
 priorityModal = document.createElement('input')
@@ -60,8 +67,21 @@ modalSubmit.innerHTML = 'Submit';
 modalContent.appendChild(modalSubmit)
 
 modalSubmit.addEventListener('click', function(){
-    newTask(taskModal.value, dateModal.value, priorityModal.value)
+  
+
+    
+
+    deleteTask2(target.textContent, complete)
+
+    newTask(taskModal.value, dateModal.value, priorityModal.value);
+
+    modal.style.display = 'none';
+    
+ 
+
+    
 })
+
 
 
 

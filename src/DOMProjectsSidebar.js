@@ -28,7 +28,7 @@ const findTask = (tasked) => {
         const div = document.createElement("div");
 
         div.innerHTML = `<div class ="taskName">${element.task}</div> 
-        <span class ="dueDate">Due: ${element.date}</span>
+        <span class ="dueDate">${element.date}</span>
         <span class="priorityLevel">${element.priority} </span>   
         <div id="icons">
         <button class = "ex"><i class="fas fa-trash"></i></button> 
@@ -144,4 +144,28 @@ const deleteTask = (task) => {
   }
 };
 
-export { projectAdd, activeProject, makeActive, deleteTask, findTask };
+const deleteTask2 = (task, other) => {
+  for (let i = 0; i < projects.length; i++) {
+    
+   
+
+    var removedIndex = projects[i].list
+      .map(function (x) {
+        return x.task;
+      })
+      .indexOf(task);
+
+    projects[i].list.splice(removedIndex, 1);
+
+    localStorage.setItem("projects", JSON.stringify(projects));
+
+    other.innerHTML = '';
+    other.style.display='none'; 
+
+ 
+
+   
+  }
+};
+
+export { projectAdd, activeProject, makeActive, deleteTask, findTask, deleteTask2 };

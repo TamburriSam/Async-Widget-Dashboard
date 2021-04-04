@@ -1,6 +1,7 @@
 import { projectAdd as projectDom1, activeProject, makeActive } from "./DOMProjectsSidebar.js";
 import { ifPageLoaded, lsItems } from "./localStorageItems";
 import { newTask, addList } from "./DOMtoDo.js";
+import {today} from './namebox.js'
 
 export let projects = [];
 
@@ -44,3 +45,6 @@ const priorityField = document.querySelector("#priority")
 
 
 
+let nameField = document.querySelector('#namebox');
+
+nameField.innerHTML = today;

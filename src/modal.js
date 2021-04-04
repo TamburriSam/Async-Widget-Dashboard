@@ -1,3 +1,5 @@
+import { da } from 'date-fns/locale';
+import { divide } from 'lodash';
 import {deleteTask2} from './DOMProjectsSidebar.js'
 import {newTask} from './DOMtoDo.js';
 
@@ -30,21 +32,42 @@ trigger.onclick = function(){
     priorityModal,
     notesModal;
 
-    let modalContent = document.querySelector('.modal-content')
+    let modalContent = document.querySelector('.modal-content');
+
+    /* modalContent.innerHTML = `<label for="task-input>
+    <input type ` */
 
 
 taskModal = document.createElement('input');
+
 taskModal.setAttribute('class', 'task-modal');
 
+
 taskModal.value = this.childNodes[0].textContent;
+
+
+
+let label = document.createElement('div');
+label.innerHTML = '<div class="task-label">Task</div>'
+
+let date = document.createElement('div');
+date.innerHTML = '<div class="date-label">Date</div>'
+
+let prio = document.createElement('div');
+prio.innerHTML = '<div class="prio-label">Prio</div>'
+
+
+
+
 
 dateModal = document.createElement('input')
 dateModal.value = this.childNodes[2].textContent;
 dateModal.setAttribute('class', 'date-modal');
 
-console.log(dateModal.value)
 
 
+
+//make radio btn instead 
 priorityModal = document.createElement('input')
 priorityModal.value = this.childNodes[4].textContent
 priorityModal.setAttribute('class', 'prio-modal');
@@ -55,10 +78,15 @@ notesModal.setAttribute('class', 'notes-modal');
 
 
 modalContent.innerHTML = '';
-modalContent.appendChild(taskModal);
+
+modalContent.appendChild(label);
+modalContent.appendChild(date);
+modalContent.appendChild(prio);
+modalContent.appendChild(taskModal)
 modalContent.appendChild(dateModal);
 modalContent.appendChild(priorityModal);
-modalContent.appendChild(notesModal);
+
+
 
 let modalSubmit = document.createElement('btn');
 modalSubmit.setAttribute('class', 'modal-submit')

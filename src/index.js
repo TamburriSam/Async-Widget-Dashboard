@@ -57,4 +57,4 @@ let nameField = document.querySelector("#namebox");
 
 nameField.innerHTML = today;
 
-console.log("3");
+console.log("9999");

@@ -1,8 +1,6 @@
 import { projects, titles, projectName } from "./index.js";
 import { Project } from "./createProject.js";
-import {openModal} from './modal.js'
-
-
+import { openModal } from "./modal.js";
 
 const todoList = document.querySelector(".ls-todos");
 
@@ -22,7 +20,6 @@ const findTask = (tasked) => {
     if (projects[i].name.includes(tasked.textContent)) {
       todoList.innerHTML = "";
 
-
       projects[i].list.forEach((element) => {
         //clear whatever is in this pane
         const div = document.createElement("div");
@@ -39,23 +36,19 @@ const findTask = (tasked) => {
         todoList.prepend(div);
 
         let x = document.querySelector(".fa-trash");
-        
 
         x.addEventListener("click", function () {
           //delete item
           deleteTask(this);
         });
 
-       
         openModal();
 
-
-        let edit = document.querySelector('.fa-edit').addEventListener('click', function(){
-          console.log('e')
-        })
-
-
-
+        let edit = document
+          .querySelector(".fa-edit")
+          .addEventListener("click", function () {
+            console.log("e");
+          });
       });
     }
   }
@@ -99,10 +92,6 @@ const projectAdd = () => {
 
       /// find out how to edit and populate upon new folder creation. ri ght now app only works as intended on reload not when folder is created. cant edit folder properly upon first creation.
 
-      
-
-  
-
       console.log("here now");
 
       todoList.innerHTML = "";
@@ -125,47 +114,49 @@ const activeProject = () => {
 
 const deleteTask = (task) => {
   for (let i = 0; i < projects.length; i++) {
-    
-    let targ = task.parentElement.parentElement.parentElement.firstChild
-      .textContent;
+    if (projects[i].name.includes(projectName.textContent)) {
+      let targ =
+        task.parentElement.parentElement.parentElement.firstChild.textContent;
 
-    var removedIndex = projects[i].list
-      .map(function (x) {
-        return x.task;
-      })
-      .indexOf(targ);
+      var removedIndex = projects[i].list
+        .map(function (x) {
+          return x.task;
+        })
+        .indexOf(targ);
 
-    projects[i].list.splice(removedIndex, 1);
+      projects[i].list.splice(removedIndex, 1);
 
-    localStorage.setItem("projects", JSON.stringify(projects));
+      localStorage.setItem("projects", JSON.stringify(projects));
 
-    task.parentElement.parentElement.parentElement.style.display =
-      "none";
+      task.parentElement.parentElement.parentElement.style.display = "none";
+    }
   }
 };
 
 const deleteTask2 = (task, other) => {
   for (let i = 0; i < projects.length; i++) {
-    
-   
+    if (projects[i].name.includes(projectName.textContent)) {
+      var removedIndex = projects[i].list
+        .map(function (x) {
+          return x.task;
+        })
+        .indexOf(task);
 
-    var removedIndex = projects[i].list
-      .map(function (x) {
-        return x.task;
-      })
-      .indexOf(task);
+      projects[i].list.splice(removedIndex, 1);
 
-    projects[i].list.splice(removedIndex, 1);
+      localStorage.setItem("projects", JSON.stringify(projects));
 
-    localStorage.setItem("projects", JSON.stringify(projects));
-
-    other.innerHTML = '';
-    other.style.display='none'; 
-
- 
-
-   
+      other.innerHTML = "";
+      other.style.display = "none";
+    }
   }
 };
 
-export { projectAdd, activeProject, makeActive, deleteTask, findTask, deleteTask2 };
+export {
+  projectAdd,
+  activeProject,
+  makeActive,
+  deleteTask,
+  findTask,
+  deleteTask2,
+};

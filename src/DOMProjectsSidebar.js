@@ -1,10 +1,30 @@
 import { projects, titles, projectName } from "./index.js";
-import { Project } from "./createProject.js";
+
 import { openModal } from "./modal.js";
 
 const todoList = document.querySelector(".ls-todos");
 
-const makeActive = (activated) => {
+export class Project {
+  constructor(name, id, list = [], date = []) {
+    this.name = name;
+    this.id = id;
+    this.list = list;
+    this.date = date;
+  }
+
+  static makeActive(activated) {
+    var current = document.getElementsByClassName("active");
+
+    if (current.length > 0) {
+      current[0].className = current[0].className.replace(" active", "");
+    }
+
+    projectName.innerHTML = activated.innerHTML;
+    activated.className += " active";
+  }
+}
+
+/* const makeActive = (activated) => {
   var current = document.getElementsByClassName("active");
 
   if (current.length > 0) {
@@ -13,7 +33,7 @@ const makeActive = (activated) => {
 
   projectName.innerHTML = activated.innerHTML;
   activated.className += " active";
-};
+}; */
 
 const findTask = (tasked) => {
   for (let i = 0; i < projects.length; i++) {
@@ -88,7 +108,7 @@ const projectAdd = () => {
     h2.appendChild(div);
 
     div.addEventListener("click", function () {
-      makeActive(this);
+      Project.makeActive(this);
 
       /// find out how to edit and populate upon new folder creation. ri ght now app only works as intended on reload not when folder is created. cant edit folder properly upon first creation.
 
@@ -105,7 +125,7 @@ const projectAdd = () => {
 const activeProject = () => {
   titles.forEach((item) => {
     item.addEventListener("click", function () {
-      makeActive(this);
+      Project.makeActive(this);
       findTask(this);
       console.log(this.textContent);
     });
@@ -155,7 +175,7 @@ const deleteTask2 = (task, other) => {
 export {
   projectAdd,
   activeProject,
-  makeActive,
+  //makeActive,
   deleteTask,
   findTask,
   deleteTask2,

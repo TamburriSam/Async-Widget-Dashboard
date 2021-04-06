@@ -40,6 +40,9 @@ const openModal = () => {
 
     dateModal = document.createElement("input");
     dateModal.value = this.parentElement.parentElement.childNodes[2].textContent;
+    /*  dateModal.innerHTML = `<input type="date" id="start" name="trip-start"
+    value="2018-03-22"
+    min="2021-27-03" max="2030-12-31" class="date">`; */
     dateModal.setAttribute("class", "date-modal");
 
     //make radio btn instead

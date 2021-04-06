@@ -1,8 +1,4 @@
-import {
-  projectAdd as projectDom1,
-  activeProject,
-  makeActive,
-} from "./DOMProjectsSidebar.js";
+import { Project } from "./DOMProjectsSidebar.js";
 import { ifPageLoaded, lsItems } from "./localStorageItems";
 import { newTask, addList } from "./DOMtoDo.js";
 import { today } from "./namebox.js";
@@ -32,7 +28,7 @@ document.addEventListener("DOMContentLoaded", ifPageLoaded());
 //checklist - circle next to task - set timeout strikethrough then set timeout deletetask function
 
 projectAdd.addEventListener("click", function () {
-  projectDom1();
+  Project.projectAdd();
 });
 
 addList.addEventListener("click", function () {
@@ -43,7 +39,7 @@ export const titles = document.querySelectorAll(".projecttitles");
 export const projectName = document.querySelector("#project-name");
 
 //active tab switching
-activeProject();
+Project.activeProject();
 
 //when clicked grab innerhtml of folder and match it to array
 
@@ -57,4 +53,4 @@ let nameField = document.querySelector("#namebox");
 
 nameField.innerHTML = today;
 
-console.log("9999");
+console.log("d33");

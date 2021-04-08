@@ -129,27 +129,6 @@ export class Project {
   }
 }
 
-/* const deleteTask = (task) => {
-  for (let i = 0; i < projects.length; i++) {
-    if (projects[i].name.includes(projectName.textContent)) {
-      let targ =
-        task.parentElement.parentElement.parentElement.firstChild.textContent;
-
-      var removedIndex = projects[i].list
-        .map(function (x) {
-          return x.task;
-        })
-        .indexOf(targ);
-
-      projects[i].list.splice(removedIndex, 1);
-
-      localStorage.setItem("projects", JSON.stringify(projects));
-
-      task.parentElement.parentElement.parentElement.style.display = "none";
-    }
-  }
-}; */
-
 const deleteTask2 = (task, other) => {
   for (let i = 0; i < projects.length; i++) {
     if (projects[i].name.includes(projectName.textContent)) {

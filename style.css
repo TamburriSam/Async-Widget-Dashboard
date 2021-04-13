@@ -318,3 +318,49 @@ main:active {
   grid-column: 2;
   height: 100px;
 }
+
+/* Weather Components */
+#weatherbox {
+  background-color: white;
+  grid-column: 3;
+  grid-row: 4 / span 4;
+
+  text-align: center;
+  padding: var(--padding-sm);
+  position: relative;
+}
+
+#weather-title {
+  font-size: var(--md-font);
+  margin-top: ;
+}
+
+#zip-code {
+  width: 80px;
+  height: 40px;
+  margin-top: var(--padding-sm);
+}
+
+#zipbutton {
+  margin-top: var(--padding-sm);
+  position: absolute;
+  left: 40px;
+  bottom: 20px;
+  width: 75%;
+  border-radius: 10px;
+  border: 1px solid var(--dark-purple);
+  height: 40px;
+  background-color: var(--dark-purple);
+  color: var(--light-purple);
+}
+
+.weather-icon {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.icon {
+  position: absolute;
+  bottom: 90px;
+  margin: auto;
+}

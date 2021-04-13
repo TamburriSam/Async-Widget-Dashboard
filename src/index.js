@@ -53,67 +53,103 @@ let nameField = document.querySelector("#namebox");
 
 nameField.innerHTML = today;
 
-console.log("5");
+console.log(`<span>&#8457;</span>`);
 
 //waiting to verify api key
-const weatherBox = document.querySelector("#weatherbox");
+/* const weatherBox = document.querySelector("#weatherbox");
 weatherBox.addEventListener("click", function () {
   fetch(
-    `https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={641629d9803f70eee81a8b3336c55851}`,
+    `http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=7cc8db0ccac4de49d0b84f2e17a789d4`,
     { mode: "cors" }
-  );
+  )
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data);
+    });
+  console.log("clicked");
+}); */
+
+let locationIcon = document.querySelector(".weather-icon");
+
+const weatherBox = document.querySelector("#weatherbox");
+
+weatherBox.innerHTML = `<div id="weather-title">Weather </div><input type="text" id="zip-code" placeholder="Zip Code"> <br> <button id ="zipbutton">Get Weather</button> `;
+
+let zip = "";
+
+let zipInput = document.querySelector("#zip-code");
+document.getElementById("zipbutton").addEventListener("click", function () {
+  zip = zipInput.value;
+
+  getWeather(zip);
+
+  zipInput.style.bottom = "53px";
+  zipInput.style.left = "100px";
+  zipInput.style.position = "relative";
 });
 
-/* async function getWeather() {
-  const response = await fetch(
-    `https://fcc-weather-api.glitch.me/api/current?lat=20&lon=60`
-  );
-  const weatherData = await response.json();
+async function getWeather(zip) {
+  try {
+    const response = await fetch(
+      `http://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=7cc8db0ccac4de49d0b84f2e17a789d4`
+    );
+    const weatherData = await response.json();
 
-  console.log(weatherData);
+    const weatherLocation = weatherData.name;
+    const weatherTemp = Math.round((weatherData.main.temp - 273.15) * 1.8 + 32);
+    const weatherFeelsLike = Math.round(
+      (weatherData.main.feels_like - 273.15) * 1.8 + 32
+    );
+    const weatherSky = weatherData.weather[0].main;
+    const weatherIcon = weatherData.weather[0].icon;
+
+    let iconHolder = document.createElement("div");
+
+    iconHolder.innerHTML = `<div class="weather-icon"><img class = "icon"src="icons/${weatherIcon}.png" /></div>
+  `;
+
+    let weatherInfo = document.createElement("div");
+    weatherInfo.innerHTML = "";
+    weatherInfo.innerHTML = `${weatherSky} in ${weatherLocation}<br>Temperature: ${weatherTemp} <span>&#8457;</span><br>Feels Like: ${weatherFeelsLike}<span>&#8457;</span>`;
+
+    weatherBox.appendChild(iconHolder);
+    weatherBox.appendChild(weatherInfo);
+
+    console.log(weatherData);
+  } catch (err) {
+    console.log(err);
+  }
+  /*   console.log(weatherLocation);
+  console.log(weatherTemp);
+  console.log(weatherFeelsLike);
+  console.log(weatherSky);
+  console.log(weatherIcon); */
 }
 
-getWeather(); */
-
-let num = 0;
-
-let p = new Promise(function (resolve, reject) {
-  navigator.geolocation.getCurrentPosition((position) => {
-    console.log(position.coords.latitude);
-  });
-  if (num === 0) {
-    resolve("Success");
-  } else {
-    reject("failed");
+var detectCapitalUse = function (word) {
+  let isTrue;
+  let allCap = [];
+  let allLow = [];
+  for (let i = 0; i < word.length; i++) {
+    allCap.push(word[i].toUpperCase());
+    allLow.push(word[i].toLowerCase());
   }
-}).then((result) => console.log(result));
-
-let d = new Promise((resolve, reject) => {
-  if (p) {
-    resolve("Success again");
+  allCap = allCap.join("");
+  allLow = allLow.join("");
+  if (allCap === word) {
+    return true;
+  } else if (
+    word[0] === word[0].toUpperCase() &&
+    word.substring(1).toLowerCase() === word.substring(1)
+  ) {
+    return true;
+  } else if (allLow === word) {
+    return true;
   } else {
-    reject("failed");
+    return false;
   }
-});
+};
 
-console.log(d);
-
-/* const promise = new Promise((resolve, reject) => {
-  navigator.geolocation.getCurrentPosition(resolve, reject);
-});
-
-promise
-  .then((position) => {
-    return position.coords.longitude;
-  })
-  .catch((error) => console.log(error));
-
-console.log(promise);
-
- */
-
-/* let latitude = navigator.geolocation.getCurrentPosition((position) => {
-  console.log(position.coords.longitude);
-});
-
-console.log(latitude); */
+console.log(detectCapitalUse("FlaG"));

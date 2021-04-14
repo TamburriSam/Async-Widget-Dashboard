@@ -1,4 +1,4 @@
-import { projectName, projects } from "./index";
+import { projectName, projects, other } from "./index";
 import { Project } from "./DOMProjectsSidebar";
 import { format, formatDistance, formatRelative, subDays } from "date-fns";
 
@@ -25,11 +25,11 @@ function newTask(task, date, priority) {
     if (item.name.includes(projectName.textContent)) {
       let newO = {
         task: `${task}`,
-        date: `${format(new Date(date), "MMM do yyyy")}`,
+        date: `${date}`,
         priority: `${priority}`,
       };
       item.list.push(newO);
-      item.date.push(format(new Date(date), "MMM do yyyy"));
+      item.date.push(date);
 
       console.log(format(new Date(date), "MMM do yyyy"));
       //right here

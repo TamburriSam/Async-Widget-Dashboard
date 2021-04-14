@@ -1,4 +1,4 @@
-import { projects, titles, projectName } from "./index.js";
+import { projects, titles, projectName, other } from "./index.js";
 
 import { openModal } from "./modal.js";
 
@@ -124,6 +124,12 @@ export class Project {
         localStorage.setItem("projects", JSON.stringify(projects));
 
         task.parentElement.parentElement.parentElement.style.display = "none";
+
+        /*  var f = other[i]
+          .map(function (x) {
+            return x.task;
+          })
+          .indexOf(targ); */
       }
     }
   }

@@ -2,6 +2,8 @@ import { Project } from "./DOMProjectsSidebar.js";
 import { ifPageLoaded, lsItems } from "./localStorageItems";
 import { newTask, addList } from "./DOMtoDo.js";
 import { today } from "./namebox.js";
+import { getWeather } from "./WeatherBox.js";
+import { format, compareAsc } from "date-fns";
 
 export let projects = [];
 
@@ -53,102 +55,52 @@ let nameField = document.querySelector("#namebox");
 
 nameField.innerHTML = today;
 
-console.log(`<span>&#8457;</span>`);
+console.log(`3`);
 
-//waiting to verify api key
-/* const weatherBox = document.querySelector("#weatherbox");
-weatherBox.addEventListener("click", function () {
-  fetch(
-    `http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=7cc8db0ccac4de49d0b84f2e17a789d4`,
-    { mode: "cors" }
-  )
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      console.log(data);
-    });
-  console.log("clicked");
-}); */
+//weather
 
-let locationIcon = document.querySelector(".weather-icon");
+const clear = () => {};
 
 const weatherBox = document.querySelector("#weatherbox");
+weatherBox.innerHTML = `<div id="weather-title">Weather </div><input type="text" id="zip-code" placeholder="Zip Code"> <br> <div class="weatherInfoContainer"</div> <button id ="zipbutton">Get Weather</button> `;
 
-weatherBox.innerHTML = `<div id="weather-title">Weather </div><input type="text" id="zip-code" placeholder="Zip Code"> <br> <button id ="zipbutton">Get Weather</button> `;
-
-let zip = "";
-
+let zipBtn = document.getElementById("zipbutton");
+let zip;
 let zipInput = document.querySelector("#zip-code");
-document.getElementById("zipbutton").addEventListener("click", function () {
+
+zipBtn.addEventListener("click", function () {
+  let w1 = document.querySelector(".weather-info");
   zip = zipInput.value;
 
-  getWeather(zip);
+  zipInput.style.position = "absolute";
+  zipInput.style.right = "0px";
+  zipInput.style.top = "10px";
 
-  zipInput.style.bottom = "53px";
-  zipInput.style.left = "100px";
-  zipInput.style.position = "relative";
+  return getWeather(zip);
 });
 
-async function getWeather(zip) {
-  try {
-    const response = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=7cc8db0ccac4de49d0b84f2e17a789d4`
-    );
-    const weatherData = await response.json();
+//due soon logic
 
-    const weatherLocation = weatherData.name;
-    const weatherTemp = Math.round((weatherData.main.temp - 273.15) * 1.8 + 32);
-    const weatherFeelsLike = Math.round(
-      (weatherData.main.feels_like - 273.15) * 1.8 + 32
-    );
-    const weatherSky = weatherData.weather[0].main;
-    const weatherIcon = weatherData.weather[0].icon;
+export let projectList = [];
 
-    let iconHolder = document.createElement("div");
+projects.forEach((project) => {
+  let x = project.list;
+  projectList.push(x);
+});
 
-    iconHolder.innerHTML = `<div class="weather-icon"><img class = "icon"src="icons/${weatherIcon}.png" /></div>
-  `;
+export let other = projectList.flat().sort(function (a, b) {
+  return new Date(b.date) - new Date(a.date);
+});
 
-    let weatherInfo = document.createElement("div");
-    weatherInfo.innerHTML = "";
-    weatherInfo.innerHTML = `${weatherSky} in ${weatherLocation}<br>Temperature: ${weatherTemp} <span>&#8457;</span><br>Feels Like: ${weatherFeelsLike}<span>&#8457;</span>`;
+const dueBox = document.querySelector("#duebox");
 
-    weatherBox.appendChild(iconHolder);
-    weatherBox.appendChild(weatherInfo);
+for (let i = 0; i < 3; i++) {
+  /* dueBox.innerHTML = `${other[i]}`; */
+  let div = document.createElement("div");
+  div.setAttribute("class", "due-styling");
+  div.innerHTML = `Task: ${other[i].task} Due: ${other[i].date}`;
 
-    console.log(weatherData);
-  } catch (err) {
-    console.log(err);
-  }
-  /*   console.log(weatherLocation);
-  console.log(weatherTemp);
-  console.log(weatherFeelsLike);
-  console.log(weatherSky);
-  console.log(weatherIcon); */
+  dueBox.appendChild(div);
 }
 
-var detectCapitalUse = function (word) {
-  let allCap = [];
-  let allLow = [];
-  for (let i = 0; i < word.length; i++) {
-    allCap.push(word[i].toUpperCase());
-    allLow.push(word[i].toLowerCase());
-  }
-  allCap = allCap.join("");
-  allLow = allLow.join("");
-  if (allCap === word) {
-    return true;
-  } else if (
-    word[0] === word[0].toUpperCase() &&
-    word.substring(1).toLowerCase() === word.substring(1)
-  ) {
-    return true;
-  } else if (allLow === word) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
-console.log(detectCapitalUse("FlaG"));
+console.log(other);

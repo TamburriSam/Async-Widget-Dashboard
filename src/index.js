@@ -129,7 +129,6 @@ async function getWeather(zip) {
 }
 
 var detectCapitalUse = function (word) {
-  let isTrue;
   let allCap = [];
   let allLow = [];
   for (let i = 0; i < word.length; i++) {

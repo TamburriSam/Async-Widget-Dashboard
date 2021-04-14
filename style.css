@@ -18,7 +18,7 @@
   --padding-md: 40px;
   --padding-lg: 60px;
   /* Border Radius */
-
+  --border-sm: 15px;
   /* Font Sizes */
   --xs-font: 12px;
   --sm-font: 18px;
@@ -35,6 +35,9 @@
   --heavy-font: 700;
   --heavier-font: 800;
   --thickest-font: 900;
+  /* Box Shadows */
+  --shadow-light: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  --shadow-md: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 /* Main Components */
@@ -51,6 +54,8 @@
   grid-column: 1;
   grid-row: 1 / span 13;
   background-color: #fff;
+  box-shadow: var(--shadow-md);
+  border-radius: 2px;
 }
 
 #namebox {
@@ -60,6 +65,8 @@
   font-size: var(--lg-font);
   line-height: 60px;
   text-align: center;
+  box-shadow: var(--shadow-md);
+  border-radius: var(--border-sm);
 }
 
 #weatherbox {
@@ -71,7 +78,11 @@
 #duebox {
   background-color: #fff;
   grid-column: 3;
+  padding-top: 7px;
   grid-row: 9 / span 4;
+  box-shadow: var(--shadow-md);
+  border-radius: var(--border-sm);
+  text-align: center;
 }
 
 #todolist {
@@ -81,6 +92,8 @@
   display: grid;
   grid-template-rows: repeat(10, auto);
   grid-template-columns: 1;
+  box-shadow: var(--shadow-md);
+  border-radius: var(--border-sm);
 }
 
 /* Sidebar Components */
@@ -324,10 +337,11 @@ main:active {
   background-color: white;
   grid-column: 3;
   grid-row: 4 / span 4;
-
+  box-shadow: var(--shadow-md);
   text-align: center;
-  padding: var(--padding-sm);
+  padding: 10px;
   position: relative;
+  border-radius: var(--border-sm);
 }
 
 #weather-title {
@@ -338,14 +352,19 @@ main:active {
 #zip-code {
   width: 80px;
   height: 40px;
-  margin-top: var(--padding-sm);
+  margin-top: 50px;
+  text-align: center;
+}
+
+#zip-code-2 {
+  position: absolute;
 }
 
 #zipbutton {
   margin-top: var(--padding-sm);
   position: absolute;
   left: 40px;
-  bottom: 20px;
+  bottom: 10px;
   width: 75%;
   border-radius: 10px;
   border: 1px solid var(--dark-purple);
@@ -361,6 +380,46 @@ main:active {
 }
 .icon {
   position: absolute;
-  bottom: 90px;
+  bottom: 100px;
   margin: auto;
+  z-index: 1;
+}
+
+.weather-info {
+  margin-top: 85px;
+  z-index: 2;
+}
+
+.change-button {
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+  left: 40px;
+  width: 75%;
+  margin-bottom: 10px;
+  height: 30px;
+  width: 75%;
+  border-radius: 10px;
+  border: 1px solid var(--dark-purple);
+  height: 40px;
+  background-color: var(--dark-purple);
+  color: var(--light-purple);
+}
+
+/* Due Soon Components */
+
+.due-title {
+  font-size: var(--md-font);
+}
+
+.due-styling {
+  background-color: white;
+  color: var(--dark-purple);
+  background-color: var(--light-grey);
+  font-size: 14px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  border-radius: 4px;
 }

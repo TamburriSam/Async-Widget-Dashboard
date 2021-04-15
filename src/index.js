@@ -1,9 +1,10 @@
 import { Project } from "./DOMProjectsSidebar.js";
 import { ifPageLoaded, lsItems } from "./localStorageItems";
 import { newTask, addList } from "./DOMtoDo.js";
-import { today } from "./namebox.js";
+import { today, todaysDate } from "./namebox.js";
 import { getWeather } from "./WeatherBox.js";
 import { format, compareAsc } from "date-fns";
+import { getQuote } from "./quoteBox.js";
 
 export let projects = [];
 
@@ -27,8 +28,6 @@ document.addEventListener("DOMContentLoaded", ifPageLoaded());
 
 //ADD COLOR PICKER BACKGROUND
 
-//checklist - circle next to task - set timeout strikethrough then set timeout deletetask function
-
 projectAdd.addEventListener("click", function () {
   Project.projectAdd();
 });
@@ -45,21 +44,15 @@ Project.activeProject();
 
 //when clicked grab innerhtml of folder and match it to array
 
-console.log(projects);
-
 const taskField = document.querySelector(".task-input");
 const dateField = document.querySelector("#start");
 const priorityField = document.querySelector("#priority");
 
 let nameField = document.querySelector("#namebox");
 
-nameField.innerHTML = today;
-
-console.log(`3`);
+nameField.innerHTML = `${today}<br>${todaysDate}`;
 
 //weather
-
-const clear = () => {};
 
 const weatherBox = document.querySelector("#weatherbox");
 weatherBox.innerHTML = `<div id="weather-title">Weather </div><input type="text" id="zip-code" placeholder="Zip Code"> <br> <div class="weatherInfoContainer"</div> <button id ="zipbutton">Get Weather</button> `;
@@ -69,7 +62,6 @@ let zip;
 let zipInput = document.querySelector("#zip-code");
 
 zipBtn.addEventListener("click", function () {
-  let w1 = document.querySelector(".weather-info");
   zip = zipInput.value;
 
   zipInput.style.position = "absolute";
@@ -79,28 +71,65 @@ zipBtn.addEventListener("click", function () {
   return getWeather(zip);
 });
 
-//due soon logic
+//async quote fetcher
+getQuote();
 
-export let projectList = [];
+//make default on page
+const project = (title = "test") => {
+  const input = document.createElement("input");
+  const br = document.createElement("br");
+  const submit = document.createElement("button");
+  const h2 = document.querySelector(".main");
 
-projects.forEach((project) => {
-  let x = project.list;
-  projectList.push(x);
-});
+  const div = document.createElement("div");
 
-export let other = projectList.flat().sort(function (a, b) {
-  return new Date(b.date) - new Date(a.date);
-});
+  div.setAttribute("class", "projecttitles");
 
-const dueBox = document.querySelector("#duebox");
+  div.innerHTML = title;
 
-for (let i = 0; i < 3; i++) {
-  /* dueBox.innerHTML = `${other[i]}`; */
-  let div = document.createElement("div");
-  div.setAttribute("class", "due-styling");
-  div.innerHTML = `Task: ${other[i].task} Due: ${other[i].date}`;
+  /* testing project object */
+  const newProj = new Project(`${title}`, `${projects.length}`);
 
-  dueBox.appendChild(div);
+  projects.push(newProj);
+
+  localStorage.setItem("projects", JSON.stringify(projects));
+
+  input.style.display = "none";
+  submit.style.display = "none";
+  h2.appendChild(div);
+
+  div.addEventListener("click", function () {
+    Project.makeActive(this);
+
+    todoList.innerHTML = "";
+
+    Project.findTask(this);
+  });
+};
+const todoList = document.querySelector(".ls-todos");
+
+window.onload = function () {
+  if (localStorage.getItem("hasCodeRunBefore") === null) {
+    project("Welcome To My App");
+    document.querySelector(".projecttitles").click();
+
+    localStorage.setItem("hasCodeRunBefore", true);
+    newTask(
+      "Create a new project folder by hitting NEW PROJECT on the sidebar"
+    );
+    newTask(
+      "Enjoy your custom dashboard featuring the openWeather API and inspirational quotes from FITquotes API"
+    );
+  }
+};
+
+console.log(projects);
+
+document.addEventListener("DOMContentLoaded", activePage());
+
+function activePage() {
+  newTask("Create a new project folder by hitting NEW PROJECT on the sidebar");
+  newTask(
+    "Enjoy your custom dashboard featuring the openWeather API and inspirational quotes from FITquotes API"
+  );
 }
-
-console.log(other);

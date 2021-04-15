@@ -1,6 +1,7 @@
 /* CSS Reset */
 @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orelega+One&family=Zilla+Slab+Highlight&display=swap");
 
 * {
   font-family: "Montserrat", sans-serif;
@@ -44,8 +45,9 @@
 #container {
   width: 100vw;
   height: 100vh;
-  background-color: var(--light-purple); /* change eventually */
+  /* background-color: var(--light-purple); */ /* change eventually */
   display: grid;
+  color: rgb(237, 159, 118);
   grid-template-columns: 200px 20px 350px 20px auto 20px;
   grid-template-rows: auto repeat(11, 65px) auto;
 }
@@ -56,26 +58,58 @@
   background-color: #fff;
   box-shadow: var(--shadow-md);
   border-radius: 2px;
+  background-color: var(--medium-grey);
+  border-right: 2px solid#aaf8fe;
+  background-color: #233954;
 }
 
 #namebox {
   grid-column: 3;
   grid-row: 2;
   background-color: #fff;
-  font-size: var(--lg-font);
+  font-size: var(--sm-font);
   line-height: 60px;
   text-align: center;
   box-shadow: var(--shadow-md);
   border-radius: var(--border-sm);
+  line-height: 25px;
+  padding: 6px;
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  background-color: #36393f;
+  border: solid 2px #aaf8fe;
+  color: white;
+}
+
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 5px);
+  }
+  100% {
+    transform: translate(0, -0px);
+  }
 }
 
 #weatherbox {
   background-color: white;
   grid-column: 3;
   grid-row: 4 / span 4;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  border-radius: var(--border-sm);
+  background-color: #36393f;
+  border: solid 2px #aaf8fe;
+  color: white;
 }
 
-#duebox {
+#quotebox {
   background-color: #fff;
   grid-column: 3;
   padding-top: 7px;
@@ -94,6 +128,7 @@
   grid-template-columns: 1;
   box-shadow: var(--shadow-md);
   border-radius: var(--border-sm);
+  padding: var(--padding-sm);
 }
 
 /* Sidebar Components */
@@ -134,6 +169,7 @@ main:active {
 #todotitle {
   grid-row: 1;
   display: flex;
+  font-size: var(--md-font);
 }
 
 #project-name {
@@ -142,8 +178,10 @@ main:active {
 
 .info-container {
   display: flex;
-  width: 100%;
+  width: 90%;
   grid-column: 1 / span 2;
+  margin: auto;
+  height: 80px;
 }
 
 #priority {
@@ -152,7 +190,11 @@ main:active {
 #todoadd {
   grid-row: 2;
   width: 50px;
-  height: 60px;
+  height: 40px;
+}
+
+.fa-plus-square {
+  font-size: 30px;
 }
 
 .task-input {
@@ -219,6 +261,37 @@ main:active {
 
 .priorityLevel {
   color: red;
+}
+
+#radio {
+  color: yellow;
+  margin-top: 10px;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid darkgray;
+  border-radius: 50%;
+  outline: none;
+  box-shadow: 0 0 5px 0px gray inset;
+}
+
+input[type="radio"]:hover {
+  box-shadow: 0 0 5px 0px orange inset;
+}
+
+input[type="radio"]:before {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 60%;
+  margin: 20% auto;
+  border-radius: 50%;
+}
+input[type="radio"]:checked:before {
+  background: teal;
 }
 
 /* Modal */
@@ -333,20 +406,9 @@ main:active {
 }
 
 /* Weather Components */
-#weatherbox {
-  background-color: white;
-  grid-column: 3;
-  grid-row: 4 / span 4;
-  box-shadow: var(--shadow-md);
-  text-align: center;
-  padding: 10px;
-  position: relative;
-  border-radius: var(--border-sm);
-}
 
 #weather-title {
   font-size: var(--md-font);
-  margin-top: ;
 }
 
 #zip-code {
@@ -370,6 +432,7 @@ main:active {
   border: 1px solid var(--dark-purple);
   height: 40px;
   background-color: var(--dark-purple);
+
   color: var(--light-purple);
 }
 
@@ -390,36 +453,15 @@ main:active {
   z-index: 2;
 }
 
-.change-button {
-  position: absolute;
-  bottom: 0;
-  margin: auto;
-  left: 40px;
-  width: 75%;
-  margin-bottom: 10px;
-  height: 30px;
-  width: 75%;
-  border-radius: 10px;
-  border: 1px solid var(--dark-purple);
-  height: 40px;
-  background-color: var(--dark-purple);
-  color: var(--light-purple);
-}
-
-/* Due Soon Components */
+/* Quote Components */
 
 .due-title {
   font-size: var(--md-font);
 }
 
-.due-styling {
-  background-color: white;
-  color: var(--dark-purple);
-  background-color: var(--light-grey);
-  font-size: 14px;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 5px;
-  border-radius: 4px;
+#quote {
+  font-size: var(--md-font);
+}
+
+#author {
 }

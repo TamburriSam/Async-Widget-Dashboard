@@ -12,7 +12,7 @@ const ifPageLoaded = () => {
       /* probably put this in a domcontroller */
       const div = document.createElement("div");
       div.setAttribute("class", "projecttitles");
-      div.innerHTML = element.name;
+      div.innerHTML = `<span class ="exit"><i class="far fa-window-close">   </i></span>&nbsp ${element.name}`;
       h2.appendChild(div);
       console.log(element);
     });

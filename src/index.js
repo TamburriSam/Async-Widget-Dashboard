@@ -73,7 +73,6 @@ zipBtn.addEventListener("click", function () {
 
 //async quote fetcher
 getQuote();
-
 //make default on page
 const project = (title = "test") => {
   const input = document.createElement("input");
@@ -120,16 +119,39 @@ window.onload = function () {
     newTask(
       "Enjoy your custom dashboard featuring the openWeather API and inspirational quotes from FITquotes API"
     );
+  } else {
+    /* newTask(
+      "Create a new project folder by hitting NEW PROJECT on the sidebar"
+    );
+    newTask(
+      "Enjoy your custom dashboard featuring the openWeather API and inspirational quotes from FitQuotes API"
+    ); */
+    ////not working
+    let sideBar = document.querySelectorAll(".projecttitles");
+    let last = sideBar[sideBar.length - 1];
+    return last.click();
   }
 };
 
 console.log(projects);
 
-document.addEventListener("DOMContentLoaded", activePage());
+///problem is right here
 
-function activePage() {
-  newTask("Create a new project folder by hitting NEW PROJECT on the sidebar");
-  newTask(
-    "Enjoy your custom dashboard featuring the openWeather API and inspirational quotes from FITquotes API"
-  );
+/* async function getMusic() {
+  fetch("https://api.spotify.com/v1/audio-analysis/6EJiVf7U0p1BBfs0qqeb1f", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${userAccessToken}`,
+    },
+  })
+    .then((response) => response.json())
+    .then(({ beats }) => {
+      beats.forEach((beat, index) => {
+        console.log(`Beat ${index} starts at ${beat.start}`);
+      });
+    });
 }
+
+console.log(getMusic()); */
+
+console.log(3);

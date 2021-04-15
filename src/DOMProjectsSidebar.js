@@ -1,4 +1,4 @@
-import { projects, titles, projectName, other } from "./index.js";
+import { projects, titles, projectName } from "./index.js";
 
 import { openModal } from "./modal.js";
 
@@ -31,15 +31,16 @@ export class Project {
         projects[i].list.forEach((element) => {
           //clear whatever is in this pane
           const div = document.createElement("div");
+          div.setAttribute("class", "list-styling");
 
-          div.innerHTML = `<div class ="taskName">${element.task}</div> 
+          div.innerHTML = `<input type="radio" id="radio" name="checklist" value="checked">
+          <div class ="taskName">${element.task}</div> 
           <span class ="dueDate">${element.date}</span>
           <span class="priorityLevel">${element.priority} </span>   
           <div id="icons">
           <button class = "ex"><i class="fas fa-trash"></i></button> 
            <button class ="edit"><i class="fas fa-edit"></i></button>
-           </div>`;
-          div.setAttribute("class", "list-styling");
+           </div> `;
 
           todoList.prepend(div);
 
@@ -50,6 +51,11 @@ export class Project {
             Project.deleteTask(this);
           });
 
+          const checked = document.querySelector("#radio");
+          checked.addEventListener("click", function () {
+            checkedTask(this);
+          });
+
           openModal();
         });
       }
@@ -58,11 +64,9 @@ export class Project {
 
   static projectAdd() {
     const input = document.createElement("input");
-    const br = document.createElement("br");
     const submit = document.createElement("button");
     const h2 = document.querySelector(".main");
 
-    h2.appendChild(br);
     h2.appendChild(input);
     input.setAttribute("type", "text");
     input.setAttribute("class", "bookInput");
@@ -88,6 +92,9 @@ export class Project {
       submit.style.display = "none";
       h2.appendChild(div);
 
+      let sideBar = document.querySelectorAll(".projecttitles");
+      let last = sideBar[sideBar.length - 1];
+
       div.addEventListener("click", function () {
         Project.makeActive(this);
 
@@ -95,6 +102,8 @@ export class Project {
 
         Project.findTask(this);
       });
+
+      return last.click();
     });
   }
   static activeProject() {
@@ -102,6 +111,7 @@ export class Project {
       item.addEventListener("click", function () {
         Project.makeActive(this);
         Project.findTask(this);
+
         console.log(this.textContent);
       });
     });
@@ -124,13 +134,8 @@ export class Project {
         localStorage.setItem("projects", JSON.stringify(projects));
 
         task.parentElement.parentElement.parentElement.style.display = "none";
-
-        /*  var f = other[i]
-          .map(function (x) {
-            return x.task;
-          })
-          .indexOf(targ); */
       }
+      console.log(projects[i].list);
     }
   }
 }
@@ -153,5 +158,34 @@ const deleteTask2 = (task, other) => {
     }
   }
 };
+
+function checkedTask(task) {
+  for (let i = 0; i < projects.length; i++) {
+    if (projects[i].name.includes(projectName.textContent)) {
+      let targ =
+        task.parentElement.parentElement.parentElement.firstChild.textContent;
+
+      var removedIndex = projects[i].list
+        .map(function (x) {
+          return x.task;
+        })
+        .indexOf(targ);
+
+      projects[i].list.splice(removedIndex, 1);
+
+      localStorage.setItem("projects", JSON.stringify(projects));
+
+      let box = task.parentElement;
+      setTimeout(() => {
+        let str = task.parentElement.childNodes[2].innerHTML;
+        task.parentElement.innerHTML = `${str.strike()} Completed!`;
+      }, 100);
+
+      setTimeout(() => {
+        box.style.display = "none";
+      }, 2500);
+    }
+  }
+}
 
 export { deleteTask2 };

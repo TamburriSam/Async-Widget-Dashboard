@@ -4,7 +4,7 @@ import { format, formatDistance, formatRelative, subDays } from "date-fns";
 import { openModal } from "./modal.js";
 export const addList = document.querySelector("#todoadd");
 
-function newTask(task, date = "", priority = "") {
+function newTask(task, date = "4/15/2021", priority = "") {
   const input = document.createElement("div");
   const todoList = document.querySelector(".ls-todos");
 

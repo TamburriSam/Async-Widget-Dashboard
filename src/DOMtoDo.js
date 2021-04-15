@@ -1,10 +1,10 @@
 import { projectName, projects, other } from "./index";
 import { Project } from "./DOMProjectsSidebar";
 import { format, formatDistance, formatRelative, subDays } from "date-fns";
-
+import { openModal } from "./modal.js";
 export const addList = document.querySelector("#todoadd");
 
-function newTask(task, date, priority) {
+function newTask(task, date = "", priority = "") {
   const input = document.createElement("div");
   const todoList = document.querySelector(".ls-todos");
 
@@ -13,13 +13,19 @@ function newTask(task, date, priority) {
   input.setAttribute("class", "list-styling");
   //clear input?
   input.innerHTML = "";
-  input.innerHTML = `<div class ="taskName">${task}</div> <span class="dueDate"> ${date} </span>
-  <span class="priorityLevel">${priority}
-  </span>
-    <div id="icons">
-    <button class = "ex"><i class="fas fa-trash"></i></button> 
-     <button class ="edit"><i class="fas fa-edit"></i></button>
-     </div>`;
+  input.innerHTML = `<input type="radio" id="radio" name="checklist" value="checked">
+  <div class ="taskName">${task}</div> 
+  <span class ="dueDate">${date}</span>
+  <span class="priorityLevel">${priority} </span>   
+  <div id="icons">
+  <button class = "ex"><i class="fas fa-trash"></i></button> 
+   <button class ="edit"><i class="fas fa-edit"></i></button>
+   </div> `;
+
+  const checked = document.querySelector("#radio");
+  checked.addEventListener("click", function () {
+    checkedTask(this);
+  });
 
   projects.forEach((item) => {
     if (item.name.includes(projectName.textContent)) {
@@ -41,6 +47,8 @@ function newTask(task, date, priority) {
         //delete item
         Project.deleteTask(this);
       });
+
+      //openModal();
     }
   });
 }

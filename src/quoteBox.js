@@ -8,6 +8,11 @@ export async function getQuote() {
     const random = quoteData[Math.floor(Math.random() * quoteData.length)];
     if (random.author === null) {
       quoteBox.innerHTML = `<div id="quote">"${random.text}"</div> <br> <div id="author">- Unknown Author</div>`;
+    } else if (
+      random.author === "Donald Trump" ||
+      random.author === "Donald J. Trump"
+    ) {
+      quoteBox.innerHTML = `<div id="quote">"${random.text}"</div> <br> <div id="author">- Unknown Author</div>`;
     } else {
       quoteBox.innerHTML = `<div id="quote">"${random.text}"</div> <br> <div id="author">- ${random.author}</div>`;
     }

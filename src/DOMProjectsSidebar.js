@@ -79,7 +79,7 @@ export class Project {
 
       div.setAttribute("class", "projecttitles");
 
-      div.innerHTML = input.value;
+      div.innerHTML = `<span class ="exit"><i class="far fa-window-close">   </i></span>${input.value}`;
 
       /* testing project object */
       const newProj = new Project(`${input.value}`, `${projects.length}`);

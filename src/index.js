@@ -154,4 +154,21 @@ console.log(projects);
 
 console.log(getMusic()); */
 
-console.log(3);
+const APIController = (function () {
+  const clientID = "";
+  const clientSecret = "";
+
+  const _getToken = async () => {
+    const result = await fetch("https://accounts.spotify.com/api/token", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded",
+        Authorization: "Basic " + btoa(clientID + clientSecret),
+      },
+      body: "grant_type=client_credentials",
+    });
+    const data = await result.json();
+    return data.access_token;
+  };
+  console.log(_getToken);
+})();

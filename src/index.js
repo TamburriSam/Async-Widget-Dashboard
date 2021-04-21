@@ -134,7 +134,7 @@ window.onload = function () {
 };
 
 console.log(projects);
-console.log(88888);
+console.log(8000888);
 ///problem is right here
 
 /* async function getMusic() {

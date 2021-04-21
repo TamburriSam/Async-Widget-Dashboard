@@ -30,7 +30,7 @@ function newTask(task, date = "4/15/2021", priority = "") {
   });
 
   projects.forEach((item) => {
-    if (item.name.includes(projectName.textContent)) {
+    if (item.name === projectName.textContent) {
       let newO = {
         task: `${task}`,
         date: `${date}`,
@@ -38,6 +38,7 @@ function newTask(task, date = "4/15/2021", priority = "") {
       };
       item.list.push(newO);
       item.date.push(date);
+      console.log("we're in");
 
       console.log(format(new Date(date), "MMM do yyyy"));
       //right here

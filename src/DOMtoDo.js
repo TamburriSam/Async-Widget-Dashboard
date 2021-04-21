@@ -1,5 +1,5 @@
 import { projectName, projects, other } from "./index";
-import { Project } from "./DOMProjectsSidebar";
+import { Project, checkedTask } from "./DOMProjectsSidebar";
 import { format, formatDistance, formatRelative, subDays } from "date-fns";
 import { openModal } from "./modal.js";
 export const addList = document.querySelector("#todoadd");
@@ -24,6 +24,8 @@ function newTask(task, date = "4/15/2021", priority = "") {
 
   const checked = document.querySelector("#radio");
   checked.addEventListener("click", function () {
+    console.log(this);
+
     checkedTask(this);
   });
 

@@ -53,6 +53,8 @@ export class Project {
 
           const checked = document.querySelector("#radio");
           checked.addEventListener("click", function () {
+            //this isnt actually where its throwing the error
+            console.log(this);
             checkedTask(this);
           });
 
@@ -79,7 +81,9 @@ export class Project {
 
       div.setAttribute("class", "projecttitles");
 
-      div.innerHTML = `<span class ="exit"><i class="far fa-window-close">   </i></span>${input.value}`;
+      //PROBLEM RIGHT HERE. PROJECT NAME IS GRABBING WHOLE VALUE INCLUDING THE EX
+      div.innerHTML = input.value;
+      /*     div.innerHTML = `<span class ="exit"><i class="far fa-window-close">   </i></span>${input.value}`; */
 
       /* testing project object */
       const newProj = new Project(`${input.value}`, `${projects.length}`);
@@ -188,4 +192,4 @@ function checkedTask(task) {
   }
 }
 
-export { deleteTask2 };
+export { deleteTask2, checkedTask };

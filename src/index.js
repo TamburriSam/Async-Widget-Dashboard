@@ -134,7 +134,7 @@ window.onload = function () {
 };
 
 console.log(projects);
-
+console.log(88888);
 ///problem is right here
 
 /* async function getMusic() {
@@ -154,7 +154,7 @@ console.log(projects);
 
 console.log(getMusic()); */
 
-const APIController = (function () {
+/* const APIController = (function () {
   const clientID = "";
   const clientSecret = "";
 
@@ -170,5 +170,7 @@ const APIController = (function () {
     const data = await result.json();
     return data.access_token;
   };
-  console.log(_getToken);
+  console.log(_getToken)
 })();
+
+ */

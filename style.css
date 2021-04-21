@@ -114,6 +114,7 @@
   background-color: #fff;
   grid-column: 3;
   padding-top: 7px;
+  padding: 30px;
   grid-row: 9 / span 4;
   box-shadow: var(--shadow-md);
   border-radius: var(--border-sm);

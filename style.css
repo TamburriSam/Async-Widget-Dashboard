@@ -8,6 +8,10 @@
   font-weight: bold;
 }
 
+body {
+  background-color: var(--dark-purple);
+}
+
 :root {
   /* Color Palette */
   --light-purple: #bda4ee;
@@ -59,9 +63,9 @@
   background-color: #fff;
   box-shadow: var(--shadow-md);
   border-radius: 2px;
-  background-color: var(--medium-grey);
+
   border-right: 2px solid#aaf8fe;
-  background-color: #233954;
+  background-color: var(--light-grey);
 }
 
 #namebox {
@@ -79,9 +83,9 @@
   animation-duration: 3s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
-  background-color: #36393f;
+  background-color: var(--light-grey);
   border: solid 2px #aaf8fe;
-  color: white;
+  color: var(--dark-grey);
 }
 
 @keyframes floating {
@@ -97,7 +101,7 @@
 }
 
 #weatherbox {
-  background-color: white;
+  background-color: var(--light-grey);
   grid-column: 3;
   grid-row: 4 / span 4;
   box-shadow: var(--shadow-md);
@@ -105,9 +109,11 @@
   padding: 10px;
   position: relative;
   border-radius: var(--border-sm);
-  background-color: #36393f;
+  box-shadow: var(--shadow-md);
+
   border: solid 2px #aaf8fe;
-  color: white;
+  color: black;
+  border: solid rgb(216, 2, 134) 2px;
 }
 
 #quotebox {
@@ -119,24 +125,30 @@
   box-shadow: var(--shadow-md);
   border-radius: var(--border-sm);
   text-align: center;
+  color: var(--dark-grey);
+  background-color: var(--light-grey);
+  border: solid rgb(26, 236, 26) 2px;
 }
 
 #todolist {
-  background-color: #fff;
+  background-color: var(--light-grey);
   grid-column: 5;
   grid-row: 2 / span 11;
   display: grid;
+  font-weight: bold;
   grid-template-rows: repeat(10, auto);
-  grid-template-columns: 1;
+  grid-template-columns: repeat(2, 1fr);
   box-shadow: var(--shadow-md);
   border-radius: var(--border-sm);
   padding: var(--padding-sm);
+  border: solid rgb(210, 243, 21) 2px;
 }
 
 /* Sidebar Components */
 
 .main {
   font-size: var(--md-font);
+  color: var(--dark-grey);
   padding: 10px;
 }
 .main:hover {
@@ -146,26 +158,70 @@ main:active {
   background-color: yellow;
 }
 
+#projectadd {
+  margin-top: var(--padding-sm);
+  width: 170px;
+  margin-left: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--light-purple);
+  height: 40px;
+  background-color: var(--light-purple);
+  color: var(--dark-purple);
+  transition: width 2s;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+#projectadd:hover {
+  transform: 100px;
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
 #projectsubmit {
+  margin-top: var(--padding-sm);
+  width: 100px;
+  margin-left: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--dark-purple);
+  height: 40px;
+  background-color: var(--dark-purple);
+  color: var(--light-purple);
+  transition: width 2s;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+#projectsubmit:hover {
+  transform: 100px;
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .bookInput {
-  background-color: #3ff;
+  background-color: var(--dark-grey);
+  color: var(--light-purple);
+  border: 1px solid var(--dark-purple);
+  border-radius: 5px;
+  outline: none;
+  height: 30px;
+}
+.bookInput::placeholder {
+  color: var(--light-purple);
 }
 
 .projecttitles {
   font-size: var(--md-font);
   padding: 10px;
-
+  color: var(--dark-grey);
   background-size: 50px;
 }
 .projecttitles:hover {
   cursor: pointer;
-  background-color: var(--light-grey);
+  background-color: var(--medium-grey);
 }
 
 .active {
-  background-color: var(--light-grey);
+  background-color: var(--medium-grey);
+  border-radius: 5px;
 }
 
 .exit {
@@ -177,11 +233,19 @@ main:active {
 #todotitle {
   grid-row: 1;
   display: flex;
+  grid-column: 1;
+  color: var(--dark-grey);
+  font-weight: bold;
   font-size: var(--md-font);
 }
 
 #project-name {
   grid-row: 1;
+  grid-column: 1;
+  margin-left: 90px;
+  font-size: var(--md-font);
+  color: var(--dark-grey);
+  font-weight: bold;
 }
 
 .info-container {
@@ -199,6 +263,20 @@ main:active {
   grid-row: 2;
   width: 50px;
   height: 40px;
+  margin-left: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--dark-purple);
+  height: 40px;
+  background-color: var(--dark-purple);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+  color: var(--light-purple);
+}
+#todoadd:hover {
+  transform: 100px;
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .fa-plus-square {
@@ -209,18 +287,29 @@ main:active {
   grid-row: 2;
   width: 30%;
   height: 50%;
+  border-radius: 15px;
+  border: 1px solid var(--dark-purple);
+  margin-right: 10px;
+  outline: none;
 }
 
 .date {
   width: 30%;
   grid-row: 2;
   height: 50%;
+  border-radius: 15px;
+  border: 1px solid var(--dark-purple);
+  margin-right: 10px;
+  outline: none;
 }
 
 #priority {
   width: 30%;
   height: 50%;
   grid-row: 2;
+  border-radius: 15px;
+  border: 1px solid var(--dark-purple);
+  outline: none;
 }
 
 .ls-todos {
@@ -231,18 +320,21 @@ main:active {
 }
 
 .list-styling {
-  background-color: white;
+  /* was light purple before */
+  background-color: var(--light-purple);
   color: var(--dark-purple);
-  border: 0.2px solid grey;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-top: 10px;
 }
 .list-styling:hover {
-  background-color: var(--light-grey);
-  color: black;
+  background-color: var(--dark-purple);
+  color: white;
   cursor: pointer;
   border: 1px solid gray;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -258,11 +350,32 @@ main:active {
   margin-right: 10px;
   border: none;
   background-color: white;
+  background-color: transparent;
 }
 
 .edit {
   border: none;
-  background-color: #fff;
+  background-color: transparent;
+}
+
+.delete-folder {
+  grid-column: 2;
+  grid-row: 1;
+  width: 170px;
+  margin-left: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--dark-purple);
+  height: 40px;
+  background-color: var(--dark-purple);
+  color: var(--light-purple);
+  transition: width 2s;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.delete-folder:hover {
+  transform: 100px;
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .dueDate {
@@ -270,7 +383,7 @@ main:active {
 }
 
 .priorityLevel {
-  color: red;
+  color: var(--light-grey);
 }
 
 #radio {
@@ -282,14 +395,14 @@ input[type="radio"] {
   -webkit-appearance: none;
   width: 20px;
   height: 20px;
-  border: 1px solid darkgray;
+  border: 1px solid var(--dark-purple);
   border-radius: 50%;
   outline: none;
   box-shadow: 0 0 5px 0px gray inset;
 }
 
 input[type="radio"]:hover {
-  box-shadow: 0 0 5px 0px orange inset;
+  box-shadow: 0 0 5px 0px rgb(216, 2, 134) inset;
 }
 
 input[type="radio"]:before {
@@ -301,7 +414,7 @@ input[type="radio"]:before {
   border-radius: 50%;
 }
 input[type="radio"]:checked:before {
-  background: teal;
+  background: var(--light-purple);
 }
 
 /* Modal */
@@ -431,6 +544,7 @@ input[type="radio"]:checked:before {
 
 #weather-title {
   font-size: var(--md-font);
+  color: var(--dark-grey);
 }
 
 #zip-code {
@@ -454,8 +568,15 @@ input[type="radio"]:checked:before {
   border: 1px solid var(--dark-purple);
   height: 40px;
   background-color: var(--dark-purple);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 
   color: var(--light-purple);
+}
+#zipbutton:hover {
+  transform: 100px;
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .weather-icon {
@@ -473,6 +594,7 @@ input[type="radio"]:checked:before {
 .weather-info {
   margin-top: 85px;
   z-index: 2;
+  color: var(--dark-grey);
 }
 
 /* Quote Components */
@@ -483,6 +605,10 @@ input[type="radio"]:checked:before {
 
 #quote {
   font-size: var(--md-font);
+}
+
+#quote-small {
+  font-size: 20px;
 }
 
 #author {

@@ -1,5 +1,6 @@
 import { deleteTask2 } from "./DOMProjectsSidebar.js";
 import { newTask } from "./DOMtoDo.js";
+import { projects } from "./index.js";
 
 const openModal = () => {
   //list styling
@@ -24,31 +25,30 @@ const openModal = () => {
     let modalContent = document.querySelector(".modal-content");
 
     taskModal = document.createElement("input");
-
+    taskModal.value = this.parentElement.parentElement.childNodes[2].textContent;
     taskModal.setAttribute("class", "task-modal");
 
-    taskModal.value = this.parentElement.parentElement.childNodes[0].textContent;
-
     let label = document.createElement("div");
-    label.innerHTML = '<div class="task-label">Task</div>';
+    label.setAttribute("class", "task-label");
+    label.innerHTML = "Task";
 
     let date = document.createElement("div");
-    date.innerHTML = '<div class="date-label">Date</div>';
+    date.setAttribute("class", "date-label");
+    date.innerHTML = "Date";
 
     let prio = document.createElement("div");
-    prio.innerHTML = '<div class="prio-label">Prio</div>';
+    prio.setAttribute("class", "prio-label");
+    prio.innerHTML = "Prio";
+
+    let dateDiv = document.createElement("input");
+    dateDiv.setAttribute("class", "date-div");
+    dateDiv.value = this.parentElement.parentElement.childNodes[4].textContent;
 
     dateModal = document.createElement("input");
-    dateModal.value = this.parentElement.parentElement.childNodes[2].textContent;
-    /*  dateModal.innerHTML = `<input type="date" id="start" name="trip-start"
-    value="2018-03-22"
-    min="2021-27-03" max="2030-12-31" class="date">`; */
+    dateModal.value = this.parentElement.parentElement.childNodes[4].textContent;
     dateModal.setAttribute("class", "date-modal");
 
-    //make radio btn instead
     priorityModal = document.createElement("div");
-
-    /*   priorityModal.value = this.parentElement.parentElement.childNodes[4].textContent; */
     priorityModal.setAttribute("class", "prio-modal");
     priorityModal.innerHTML = `  <select name="cars" id="prio">
     <option value="high-priority">High</option>
@@ -61,11 +61,12 @@ const openModal = () => {
 
     modalContent.innerHTML = "";
 
+    modalContent.appendChild(span);
     modalContent.appendChild(label);
     modalContent.appendChild(date);
     modalContent.appendChild(prio);
     modalContent.appendChild(taskModal);
-    modalContent.appendChild(dateModal);
+    modalContent.appendChild(dateDiv);
     modalContent.appendChild(priorityModal);
 
     //modalContent.appendChild(notesModal);
@@ -77,11 +78,31 @@ const openModal = () => {
     modalContent.appendChild(modalSubmit);
 
     modalSubmit.addEventListener("click", function () {
-      deleteTask2(target.textContent, complete);
-      console.log(complete);
+      /*  deleteTask2(target.textContent, complete);
+
       let secondPrio = document.getElementById("prio");
-      newTask(taskModal.value, dateModal.value, secondPrio.value);
+
+      newTask(taskModal.value, dateDiv.value, secondPrio.value);
+      localStorage.setItem("projects", JSON.stringify(projects)); */
+
+      if (taskModal.value === "") {
+        alert("Please Enter All Fields");
+      } else if (taskModal.value !== "") {
+        deleteTask2(target.textContent, complete);
+
+        let secondPrio = document.getElementById("prio");
+
+        newTask(taskModal.value, dateDiv.value, secondPrio.value);
+        localStorage.setItem("projects", JSON.stringify(projects));
+        modal.style.display = "none";
+        console.log(taskModal.value);
+      }
+    });
+
+    span.addEventListener("click", function () {
       modal.style.display = "none";
+
+      return console.log(this.parentElement);
     });
   };
 };

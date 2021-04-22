@@ -1,4 +1,5 @@
 import { projects, titles, projectName } from "./index.js";
+import { format, formatDistance, formatRelative, subDays } from "date-fns";
 
 import { openModal } from "./modal.js";
 
@@ -29,13 +30,15 @@ export class Project {
         todoList.innerHTML = "";
 
         projects[i].list.forEach((element) => {
+          let formattedDate = format(new Date(element.date), "MMM dd yyyy");
+
           //clear whatever is in this pane
           const div = document.createElement("div");
           div.setAttribute("class", "list-styling");
 
           div.innerHTML = `<input type="radio" id="radio" name="checklist" value="checked">
           <div class ="taskName">${element.task}</div> 
-          <span class ="dueDate">${element.date}</span>
+          <span class ="dueDate">${formattedDate}</span>
           <span class="priorityLevel">${element.priority} </span>   
           <div id="icons">
           <button class = "ex"><i class="fas fa-trash"></i></button> 

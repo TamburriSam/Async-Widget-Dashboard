@@ -4,7 +4,9 @@ import { format, formatDistance, formatRelative, subDays } from "date-fns";
 import { openModal } from "./modal.js";
 export const addList = document.querySelector("#todoadd");
 
-function newTask(task, date = "4/15/2021", priority = "") {
+function newTask(task, date = "Mar 29 2018", priority = "low") {
+  let formattedDate = format(new Date(date), "MMM dd yyyy");
+
   const input = document.createElement("div");
   const todoList = document.querySelector(".ls-todos");
 
@@ -15,7 +17,7 @@ function newTask(task, date = "4/15/2021", priority = "") {
   input.innerHTML = "";
   input.innerHTML = `<input type="radio" id="radio" name="checklist" value="checked">
   <div class ="taskName">${task}</div> 
-  <span class ="dueDate">${date}</span>
+  <span class ="dueDate">${formattedDate}</span>
   <span class="priorityLevel">${priority} </span>   
   <div id="icons">
   <button class = "ex"><i class="fas fa-trash"></i></button> 
@@ -33,14 +35,12 @@ function newTask(task, date = "4/15/2021", priority = "") {
     if (item.name === projectName.textContent) {
       let newO = {
         task: `${task}`,
-        date: `${date}`,
+        date: `${formattedDate}`,
         priority: `${priority}`,
       };
       item.list.push(newO);
       item.date.push(date);
       console.log("we're in");
-
-      console.log(format(new Date(date), "MMM do yyyy"));
       //right here
 
       localStorage.setItem("projects", JSON.stringify(projects));
@@ -51,7 +51,10 @@ function newTask(task, date = "4/15/2021", priority = "") {
         Project.deleteTask(this);
       });
 
-      //openModal();
+      let edit = document.querySelector(".edit");
+      edit.addEventListener("click", function () {
+        return openModal();
+      });
     }
   });
 }

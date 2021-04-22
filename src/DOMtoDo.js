@@ -4,7 +4,11 @@ import { format, formatDistance, formatRelative, subDays } from "date-fns";
 import { openModal } from "./modal.js";
 export const addList = document.querySelector("#todoadd");
 
-function newTask(task, date = "Mar 29 2018", priority = "low") {
+function newTask(
+  task = "Unnamed Task",
+  date = "Mar 29 2018",
+  priority = "low"
+) {
   let formattedDate = format(new Date(date), "MMM dd yyyy");
 
   const input = document.createElement("div");
@@ -26,8 +30,6 @@ function newTask(task, date = "Mar 29 2018", priority = "low") {
 
   const checked = document.querySelector("#radio");
   checked.addEventListener("click", function () {
-    console.log(this);
-
     checkedTask(this);
   });
 
@@ -40,8 +42,6 @@ function newTask(task, date = "Mar 29 2018", priority = "low") {
       };
       item.list.push(newO);
       item.date.push(date);
-      console.log("we're in");
-      //right here
 
       localStorage.setItem("projects", JSON.stringify(projects));
 

@@ -85,7 +85,7 @@ const openModal = () => {
       newTask(taskModal.value, dateDiv.value, secondPrio.value);
       localStorage.setItem("projects", JSON.stringify(projects)); */
 
-      if (taskModal.value === "") {
+      if (taskModal.value === "" || dateDiv.value === "") {
         alert("Please Enter All Fields");
       } else if (taskModal.value !== "") {
         deleteTask2(target.textContent, complete);

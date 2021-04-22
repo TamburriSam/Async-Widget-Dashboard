@@ -4,6 +4,7 @@ async function getWeather(zip) {
   try {
     /* weatherBox.innerHTML = `<div id="weather-title">Weather </div><input type="text" id="zip-code" placeholder="Zip Code"> <br> <button id ="zipbutton">Get Weather</button> `; */
     let weatherInfoContainer = document.querySelector(".weatherInfoContainer");
+    let zipInput = document.querySelector("#zip-code");
 
     let weatherInfo = document.createElement("div");
     weatherInfo.setAttribute("class", "weather-info");
@@ -39,8 +40,10 @@ async function getWeather(zip) {
     weatherBox.appendChild(iconHolder);
     weatherBox.appendChild(weatherInfoContainer);
 
-    console.log(weatherBox.lastChild);
+    console.log(zipInput.value);
 
+    zipInput.setAttribute("placeholder", "New Zip");
+    zipInput.value = ``;
     /////IMPORTANT MIGHT BEHERE
     //////
     //////

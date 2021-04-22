@@ -47,17 +47,34 @@ export class Project {
 
           todoList.prepend(div);
 
+          //delete task
           let x = document.querySelector(".fa-trash");
-
           x.addEventListener("click", function () {
-            //delete item
             Project.deleteTask(this);
           });
 
+          //delete folder
+          let list = document.querySelector("#todolist");
+          let del = document.createElement("button");
+          del.setAttribute("class", "delete-folder");
+          del.innerHTML = "Delete Folder";
+          list.appendChild(del);
+
+          del.addEventListener("click", function () {
+            console.log(this.parentElement.childNodes);
+
+            projects.forEach((project, index) => {
+              if (project.name === this.parentElement.childNodes[3].innerHTML) {
+                projects.splice(index, 1);
+                localStorage.setItem("projects", JSON.stringify(projects));
+                location.reload();
+              }
+            });
+          });
+
+          //checkbox
           const checked = document.querySelector("#radio");
           checked.addEventListener("click", function () {
-            //this isnt actually where its throwing the error
-            console.log(this);
             checkedTask(this);
           });
 
@@ -78,6 +95,8 @@ export class Project {
     h2.appendChild(submit);
     submit.innerHTML = "Submit";
     submit.setAttribute("id", "projectsubmit");
+    input.style.color = "white";
+    input.setAttribute("placeholder", "Enter Project Name");
 
     submit.addEventListener("click", function () {
       const div = document.createElement("div");
@@ -85,9 +104,9 @@ export class Project {
       div.setAttribute("class", "projecttitles");
 
       //PROBLEM RIGHT HERE. PROJECT NAME IS GRABBING WHOLE VALUE INCLUDING THE EX
-      div.innerHTML = input.value;
-      /*     div.innerHTML = `<span class ="exit"><i class="far fa-window-close">   </i></span>${input.value}`; */
+      //div.innerHTML = input.value;
 
+      div.innerHTML = input.value;
       /* testing project object */
       const newProj = new Project(`${input.value}`, `${projects.length}`);
 
@@ -190,7 +209,7 @@ function checkedTask(task) {
 
       setTimeout(() => {
         box.style.display = "none";
-      }, 2500);
+      }, 3000);
     }
   }
 }

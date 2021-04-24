@@ -35,7 +35,6 @@ export class Project {
           //clear whatever is in this pane
           const div = document.createElement("div");
           div.setAttribute("class", "list-styling");
-
           div.innerHTML = `<input type="radio" id="radio" name="checklist" value="checked">
           <div class ="taskName">${element.task}</div> 
           <span class ="dueDate">${formattedDate}</span>
@@ -100,12 +99,7 @@ export class Project {
 
     submit.addEventListener("click", function () {
       const div = document.createElement("div");
-
       div.setAttribute("class", "projecttitles");
-
-      //PROBLEM RIGHT HERE. PROJECT NAME IS GRABBING WHOLE VALUE INCLUDING THE EX
-      //div.innerHTML = input.value;
-
       div.innerHTML = input.value;
       /* testing project object */
       const newProj = new Project(`${input.value}`, `${projects.length}`);
@@ -137,8 +131,6 @@ export class Project {
       item.addEventListener("click", function () {
         Project.makeActive(this);
         Project.findTask(this);
-
-        console.log(this.textContent);
       });
     });
   }

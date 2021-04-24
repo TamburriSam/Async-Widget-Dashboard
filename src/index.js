@@ -48,7 +48,6 @@ let nameField = document.querySelector("#namebox");
 nameField.innerHTML = `${today}<br>${todaysDate}`;
 
 //weather
-
 const weatherBox = document.querySelector("#weatherbox");
 weatherBox.innerHTML = `<div id="weather-title">Weather </div><input type="text" id="zip-code" placeholder="Zip Code"> <br> <div class="weatherInfoContainer"</div> <button id ="zipbutton">Get Weather</button> `;
 
@@ -68,7 +67,7 @@ zipBtn.addEventListener("click", function () {
 
 //async quote fetcher
 getQuote();
-//make default on page
+
 const project = (title = "test") => {
   const input = document.createElement("input");
   const br = document.createElement("br");
